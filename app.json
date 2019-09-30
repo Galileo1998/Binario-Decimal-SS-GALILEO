@@ -4,6 +4,10 @@
     "slug": "Binario-Decimal-SS-GALILEO",
     "privacy": "public",
     "sdkVersion": "35.0.0",
+    "android":{
+      "package":"com.Galileo.myapp",
+       "versionCode":1 
+           },
     "platforms": [
       "ios",
       "android",
