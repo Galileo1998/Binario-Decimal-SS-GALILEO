@@ -1,5 +1,5 @@
 import React, {Component}  from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
 import { parse } from 'qs';
 
 export default class App extends Component
@@ -29,10 +29,15 @@ export default class App extends Component
       alert('Valor Incorrecto');
     }
     else
-    {
-      var numero = parseInt(valorA);
-      alert('Número: '+ (numero.toString(2))); 
-    }
+      if(valorA=='')
+      {
+        alert('Ingrese un valor');
+      }
+      else
+      {
+        var numero = parseInt(valorA);
+        alert('Número: '+ (numero.toString(2))); 
+      }
   }
 
   binario = (valorB) =>
@@ -43,11 +48,16 @@ export default class App extends Component
         alert('Valor Incorrecto');
       }
       else
-      {
-        var binary = valorB;
-        var digit = parseInt(binary, 2);
-        alert('Número: '+ digit);
-      }
+        if(valorB=='')
+        {
+          alert('Ingrese un valor');
+        }
+        else
+        {
+          var binary = valorB;
+          var digit = parseInt(binary, 2);
+          alert('Número: '+ digit);
+        }
 
   }
 
@@ -55,47 +65,50 @@ export default class App extends Component
   {
   return (
     <View style={styles.container}>
-      <Text style= {styles.texto}>Calculadora Decimal-Binario</Text>
+      <ImageBackground source={require('./img/fondo.jpg')} style={{width: '100%', height: '100%'}}>
+            <Text style= {styles.texto}>Calculadora Decimal-Binario</Text>
 
-      <TextInput 
-         style = {styles.input}
-         underlineColorAndroid = "transparent"
-         placeholder = "Decimal"
-         placeholderTextColor = "#9a73ef"
-         type = "numeric"
-         keyboardType = 'numeric'
-         onChangeText = {this.handleA}        
-     />
+            <TextInput 
+              style = {styles.input}
+              underlineColorAndroid = "transparent"
+              placeholder = "Decimal..."
+              placeholderTextColor = "#fff"
+              type = "numeric"
+              keyboardType = 'numeric'
+              onChangeText = {this.handleA}        
+            />
 
-    <TouchableOpacity style= {styles.submitButton}
-                 onPress = 
-                 {
-                    () => this.suma(this.state.valorA)
-                 }>
-            <Text style= {styles.submitButtonText}
-            >Convertir a Binario</Text>
-    </TouchableOpacity> 
+            <TouchableOpacity style= {styles.submitButton}
+                      onPress = 
+                      {
+                          () => this.suma(this.state.valorA)
+                      }>
+                  <Text style= {styles.submitButtonText}
+                  >Convertir a Binario</Text>
+            </TouchableOpacity> 
 
-    <Text style= {styles.texto}>Calculadora Binario-Decimal</Text>
+            <Text style= {styles.texto}>Calculadora Binario-Decimal</Text>
 
-    <TextInput 
-      style = {styles.input}
-      underlineColorAndroid = "transparent"
-      placeholder = "Binario"
-      placeholderTextColor = "#9a73ef"
-      type = "numeric"
-      keyboardType = 'numeric'
-      onChangeText ={this.handleB}
-    />
+            <TextInput 
+            style = {styles.input}
+            underlineColorAndroid = "transparent"
+            placeholder = "Binario..."
+            placeholderTextColor = "#fff"
+            type = "numeric"
+            keyboardType = 'numeric'
+            onChangeText ={this.handleB}
+            />
 
-    <TouchableOpacity style= {styles.submitButton}
-              onPress = 
-              {
-                  () => this.binario(this.state.valorB)
-              }>
-          <Text style= {styles.submitButtonText}
-          >Convertir a Decimal</Text>
-    </TouchableOpacity> 
+            <TouchableOpacity style= {styles.submitButton}
+                    onPress = 
+                    {
+                        () => this.binario(this.state.valorB)
+                    }>
+                <Text style= {styles.submitButtonText}
+                >Convertir a Decimal</Text>
+            </TouchableOpacity> 
+    </ImageBackground>
+  
     </View>
   );
   }
@@ -104,7 +117,7 @@ export default class App extends Component
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 23
+    paddingTop: 23,
   },
 
   flex: {
@@ -116,32 +129,34 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    borderColor: '#7a42f4',
+    borderColor: '#fff',
+    color: 'white',
     borderWidth: 1,
     width: '70%',
     alignContent: 'center',
     marginLeft: 50,
     height: 40,
-    marginBottom: 40
+    marginBottom: 40,
+    borderRadius: 7
   },
 
   submitButton: {
-    backgroundColor: '#7a42f4',
+    backgroundColor: '#000000',
     width: '45%',
     borderRadius: 10,
     marginLeft: '25%',
   },
 
   submitButtonDicc: {
-    backgroundColor: '#7a42f4',
+    backgroundColor: '#000',
     width: '45%',
     alignContent: "center"
   },
-
+  
   submitButtonText: {
     color: '#fff',
     textAlign: 'center',
-    backgroundColor: '#7a42f4',
+    backgroundColor: '#000',
     borderRadius: 20,
     height: 40,
   },
@@ -149,7 +164,7 @@ const styles = StyleSheet.create({
   texto: {
     fontWeight: "bold",
     textAlign: 'center',
-    color: '#7a42f4',
+    color: '#fff',
     margin: 25
   }
 })
