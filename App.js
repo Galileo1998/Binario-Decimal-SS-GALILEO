@@ -1,6 +1,6 @@
 import React, {Component}  from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground} from 'react-native';
-import { parse } from 'qs';
+
 
 export default class App extends Component
 {
@@ -21,7 +21,7 @@ export default class App extends Component
     this.setState({ valorB: text})
   }
 
-  suma = (valorA) =>
+  decimal = (valorA) =>
   {
     var regexConstructor = new RegExp("^[0-9]*$");
     if(!regexConstructor.test(valorA))
@@ -81,7 +81,7 @@ export default class App extends Component
             <TouchableOpacity style= {styles.submitButton}
                       onPress = 
                       {
-                          () => this.suma(this.state.valorA)
+                          () => this.decimal(this.state.valorA)
                       }>
                   <Text style= {styles.submitButtonText}
                   >Convertir a Binario</Text>
